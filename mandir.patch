@@ -1,0 +1,11 @@
+--- dune-1.5.1/src/install.ml~	2018-11-07 17:17:25.000000000 +0100
++++ dune-1.5.1/src/install.ml	2018-11-24 15:31:19.691018769 +0100
+@@ -125,7 +125,7 @@
+       ; share_root
+       ; bin          = Path.relative destdir "bin"
+       ; sbin         = Path.relative destdir "sbin"
+-      ; man          = Path.relative destdir "man"
++      ; man          = Path.relative share_root "man"
+       ; toplevel     = Path.relative libdir  "toplevel"
+       ; stublibs     = Path.relative libdir  "stublibs"
+       ; lib          = Path.relative lib_root     package
