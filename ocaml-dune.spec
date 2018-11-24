@@ -30,7 +30,11 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %endif
 
 %description
-A composable build system for OCaml.
+Dune is a build system designed for OCaml/Reason projects only. It
+focuses on providing the user with a consistent experience and takes
+care of most of the low-level details of OCaml compilation. All you
+have to do is provide a description of your project and dune will do
+the rest.
 
 %prep
 %setup -q -n %{module}-%{version}
