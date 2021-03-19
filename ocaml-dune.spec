@@ -10,19 +10,17 @@
 %define		module	dune
 Summary:	A composable build system for OCaml
 Name:		ocaml-%{module}
-Version:	1.5.1
+Version:	2.8.4
 Release:	1
 License:	MIT
 Group:		Libraries
 Source0:	https://github.com/ocaml/dune/archive/%{version}/%{module}-%{version}.tar.gz
-# Source0-md5:	3f14fccc36dd6b852390831a3f2b4137
-Patch0:		mandir.patch
+# Source0-md5:	68fbc294aeed510425d20498225d416b
 URL:		https://github.com/ocaml/dune
 BuildRequires:	ocaml >= 3.04-7
 %requires_eq	ocaml-runtime
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		debug_package	%{nil}
 %if %{without ocaml_opt}
 %define		no_install_post_strip	1
 # no opt means no native binary, stripping bytecode breaks such programs
@@ -38,13 +36,16 @@ the rest.
 
 %prep
 %setup -q -n %{module}-%{version}
-%patch0 -p1
 
 %build
-ocaml configure.ml
+./configure \
+	--libdir %{_libdir}/ocaml \
+	--mandir %{_mandir}
 
-%{__make} -j1 release \
+%{__make} release \
 	CC="%{__cc} %{rpmcflags} -fPIC"
+
+%{__make} doc
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -59,7 +60,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc LICENSE.md CHANGES.md README.md
 %attr(755,root,root) %{_bindir}/dune
-%attr(755,root,root) %{_bindir}/jbuilder
-%{_libdir}/ocaml/site-lib/%{module}
+%{_libdir}/ocaml/dune
 %{_mandir}/man1/dune*.1*
 %{_mandir}/man5/dune*.5*
