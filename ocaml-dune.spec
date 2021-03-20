@@ -11,7 +11,7 @@
 Summary:	A composable build system for OCaml
 Name:		ocaml-%{module}
 Version:	2.8.4
-Release:	2
+Release:	3
 License:	MIT
 Group:		Libraries
 Source0:	https://github.com/ocaml/dune/archive/%{version}/%{module}-%{version}.tar.gz
@@ -21,12 +21,6 @@ BuildRequires:	ocaml >= 3.04-7
 BuildRequires:	ocaml-csexp
 %requires_eq	ocaml-runtime
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%if %{without ocaml_opt}
-%define		no_install_post_strip	1
-# no opt means no native binary, stripping bytecode breaks such programs
-%define		_enable_debug_packages	0
-%endif
 
 %description
 Dune is a build system designed for OCaml/Reason projects only. It
@@ -104,21 +98,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/ocaml/dune-site/*/*.cma
 %{_libdir}/ocaml/dune-site/*/*.cmi
 %if %{with ocaml_opt}
-%{_libdir}/ocaml/dune*/*.a
-%{_libdir}/ocaml/dune*/*.cmx
-%{_libdir}/ocaml/dune*/*.cmxa
 %{_libdir}/ocaml/dune*/*.cmxs
-%{_libdir}/ocaml/dune-private-libs/*/*.a
-%{_libdir}/ocaml/dune-private-libs/*/*.cmx
-%{_libdir}/ocaml/dune-private-libs/*/*.cmxa
 %{_libdir}/ocaml/dune-private-libs/*/*.cmxs
-%{_libdir}/ocaml/dune-site/*/*.cmx
-%{_libdir}/ocaml/dune-site/*/*.a
-%{_libdir}/ocaml/dune-site/*/*.cmxa
 %{_libdir}/ocaml/dune-site/*/*.cmxs
+%endif
 %attr(755,root,root) %{_libdir}/ocaml/stublibs/dllstdune_stubs.so
 %attr(755,root,root) %{_libdir}/ocaml/stublibs/dlldune_filesystem_stubs_stubs.so
-%endif
 %{_mandir}/man1/dune*.1*
 %{_mandir}/man5/dune*.5*
 
@@ -138,7 +123,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/ocaml/dune-site/*/*.cmti
 %{_libdir}/ocaml/dune-site/*/*.ml
 %{_libdir}/ocaml/dune-site/*/*.mli
-%ifarch %{ocaml_native_compiler}
+%if %{with ocaml_opt}
 %{_libdir}/ocaml/dune*/*.a
 %{_libdir}/ocaml/dune*/*.cmx
 %{_libdir}/ocaml/dune*/*.cmxa
@@ -148,4 +133,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/ocaml/dune-site/*/*.a
 %{_libdir}/ocaml/dune-site/*/*.cmx
 %{_libdir}/ocaml/dune-site/*/*.cmxa
+%else
+%{_libdir}/ocaml/dune-private-libs/filesystem_stubs/libdune_filesystem_stubs_stubs.a
+%{_libdir}/ocaml/dune-private-libs/stdune/libstdune_stubs.a
 %endif
