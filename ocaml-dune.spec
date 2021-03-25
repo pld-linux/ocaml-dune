@@ -11,7 +11,7 @@
 Summary:	A composable build system for OCaml
 Name:		ocaml-%{module}
 Version:	2.8.4
-Release:	3
+Release:	4
 License:	MIT
 Group:		Libraries
 Source0:	https://github.com/ocaml/dune/archive/%{version}/%{module}-%{version}.tar.gz
@@ -83,10 +83,17 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/ocaml/dune-configurator
 %dir %{_libdir}/ocaml/dune-glob
 %dir %{_libdir}/ocaml/dune-private-libs
+%dir %{_libdir}/ocaml/dune-private-libs/cache
+%dir %{_libdir}/ocaml/dune-private-libs/dune_csexp
 %dir %{_libdir}/ocaml/dune-private-libs/dune-lang
 %dir %{_libdir}/ocaml/dune-private-libs/dune_re
+%dir %{_libdir}/ocaml/dune-private-libs/dune-section
+%dir %{_libdir}/ocaml/dune-private-libs/dune_util
+%dir %{_libdir}/ocaml/dune-private-libs/filesystem_stubs
+%dir %{_libdir}/ocaml/dune-private-libs/meta_parser
 %dir %{_libdir}/ocaml/dune-private-libs/ocaml-config
 %dir %{_libdir}/ocaml/dune-private-libs/stdune
+%dir %{_libdir}/ocaml/dune-private-libs/xdg
 %dir %{_libdir}/ocaml/dune-site
 %dir %{_libdir}/ocaml/dune-site/plugins
 %{_libdir}/ocaml/dune*/META
