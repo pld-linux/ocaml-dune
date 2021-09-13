@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_without	ocaml_opt	# skip building native optimized binaries (bytecode is always built)
+%bcond_without	ocaml_opt	# native optimized binaries (bytecode is always built)
 
 # not yet available on x32 (ocaml 4.02.1), update when upstream will support it
 %ifnarch %{ix86} %{x8664} %{arm} aarch64 ppc sparc sparcv9
@@ -9,16 +9,18 @@
 
 %define		module	dune
 Summary:	A composable build system for OCaml
+Summary(pl.UTF-8):	Składalny system budowania dla OCamla
 Name:		ocaml-%{module}
-Version:	2.8.4
-Release:	4
+Version:	2.8.5
+Release:	1
 License:	MIT
 Group:		Libraries
-Source0:	https://github.com/ocaml/dune/archive/%{version}/%{module}-%{version}.tar.gz
-# Source0-md5:	68fbc294aeed510425d20498225d416b
+#Source0Download: https://github.com/ocaml/dune/releases
+Source0:	https://github.com/ocaml/dune/releases/download/%{version}/%{module}-%{version}.tbz
+# Source0-md5:	255315e5b7d8c48076ee2afcc314f190
 URL:		https://github.com/ocaml/dune
-BuildRequires:	ocaml >= 3.04-7
-BuildRequires:	ocaml-csexp
+BuildRequires:	ocaml >= 1:4.03.0
+BuildRequires:	ocaml-csexp >= 1.3.0
 %requires_eq	ocaml-runtime
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -29,14 +31,26 @@ care of most of the low-level details of OCaml compilation. All you
 have to do is provide a description of your project and dune will do
 the rest.
 
-%package        devel
-Summary:	Development files for dune
-Requires:	%{name} = %{version}-%{release}
-Requires:	ocaml-csexp-devel
+%description -l pl.UTF-8
+Dune to system budowania zaprojektowany wyłącznie dla projektów
+OCamla/Reasona. Skupia się na zapewnieniu użytkownikowi spójnego
+zachowania i dba o większość niskopoziomowych szczegółów kompilacji
+OCamla. Wszystko, co trzeba zrobić, to utworzenie opisu projektu, a
+dune zrobi resztę.
 
-%description    devel
+%package devel
+Summary:	Development files for dune
+Summary(pl.UTF-8):	Pliki programistyczne dune
+Requires:	%{name} = %{version}-%{release}
+Requires:	ocaml-csexp-devel >= 1.3.0
+
+%description devel
 This package contains libraries and signature files for developing
 applications that use dune.
+
+%description devel -l pl.UTF-8
+Ten pakiet zawiera biblioteki i pliki sygnatur do tworzenia aplikacji
+wykorzystujących dune.
 
 %prep
 %setup -q -n %{module}-%{version}
@@ -105,9 +119,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/ocaml/dune-site/*/*.cma
 %{_libdir}/ocaml/dune-site/*/*.cmi
 %if %{with ocaml_opt}
-%{_libdir}/ocaml/dune*/*.cmxs
-%{_libdir}/ocaml/dune-private-libs/*/*.cmxs
-%{_libdir}/ocaml/dune-site/*/*.cmxs
+%attr(755,root,root) %{_libdir}/ocaml/dune*/*.cmxs
+%attr(755,root,root) %{_libdir}/ocaml/dune-private-libs/*/*.cmxs
+%attr(755,root,root) %{_libdir}/ocaml/dune-site/*/*.cmxs
 %endif
 %attr(755,root,root) %{_libdir}/ocaml/stublibs/dllstdune_stubs.so
 %attr(755,root,root) %{_libdir}/ocaml/stublibs/dlldune_filesystem_stubs_stubs.so
