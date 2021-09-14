@@ -21,6 +21,8 @@ Source0:	https://github.com/ocaml/dune/releases/download/%{version}/%{module}-%{
 URL:		https://github.com/ocaml/dune
 BuildRequires:	ocaml >= 1:4.03.0
 BuildRequires:	ocaml-csexp >= 1.3.0
+BuildRequires:	python3-sphinx_rtd_theme
+BuildRequires:	sphinx-pdg >= 2
 %requires_eq	ocaml-runtime
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
