@@ -11,15 +11,15 @@
 Summary:	A composable build system for OCaml
 Summary(pl.UTF-8):	Składalny system budowania dla OCamla
 Name:		ocaml-%{module}
-Version:	2.8.5
+Version:	2.9.1
 Release:	1
 License:	MIT
 Group:		Libraries
 #Source0Download: https://github.com/ocaml/dune/releases
 Source0:	https://github.com/ocaml/dune/releases/download/%{version}/%{module}-%{version}.tbz
-# Source0-md5:	255315e5b7d8c48076ee2afcc314f190
+# Source0-md5:	0929081f80064ecb836ffdef983100f4
 URL:		https://github.com/ocaml/dune
-BuildRequires:	ocaml >= 1:4.03.0
+BuildRequires:	ocaml >= 1:4.08
 BuildRequires:	ocaml-csexp >= 1.3.0
 BuildRequires:	python3-sphinx_rtd_theme
 BuildRequires:	sphinx-pdg >= 2
@@ -113,49 +113,49 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/ocaml/dune-site
 %dir %{_libdir}/ocaml/dune-site/plugins
 %{_libdir}/ocaml/dune*/META
-%{_libdir}/ocaml/dune*/*.cma
-%{_libdir}/ocaml/dune*/*.cmi
+%{_libdir}/ocaml/dune-*/*.cma
+%{_libdir}/ocaml/dune-*/*.cmi
 %{_libdir}/ocaml/dune-configurator/.private
 %{_libdir}/ocaml/dune-private-libs/*/*.cma
 %{_libdir}/ocaml/dune-private-libs/*/*.cmi
-%{_libdir}/ocaml/dune-site/*/*.cma
-%{_libdir}/ocaml/dune-site/*/*.cmi
+%{_libdir}/ocaml/dune-site/plugins/*.cma
+%{_libdir}/ocaml/dune-site/plugins/*.cmi
 %if %{with ocaml_opt}
-%attr(755,root,root) %{_libdir}/ocaml/dune*/*.cmxs
+%attr(755,root,root) %{_libdir}/ocaml/dune-*/*.cmxs
 %attr(755,root,root) %{_libdir}/ocaml/dune-private-libs/*/*.cmxs
-%attr(755,root,root) %{_libdir}/ocaml/dune-site/*/*.cmxs
+%attr(755,root,root) %{_libdir}/ocaml/dune-site/plugins/*.cmxs
 %endif
-%attr(755,root,root) %{_libdir}/ocaml/stublibs/dllstdune_stubs.so
 %attr(755,root,root) %{_libdir}/ocaml/stublibs/dlldune_filesystem_stubs_stubs.so
+%attr(755,root,root) %{_libdir}/ocaml/stublibs/dllstdune_stubs.so
 %{_mandir}/man1/dune*.1*
-%{_mandir}/man5/dune*.5*
+%{_mandir}/man5/dune-config.5*
 
 %files devel
 %defattr(644,root,root,755)
 %{_libdir}/ocaml/dune*/dune-package
 %{_libdir}/ocaml/dune*/opam
-%{_libdir}/ocaml/dune*/*.cmt
-%{_libdir}/ocaml/dune*/*.cmti
-%{_libdir}/ocaml/dune*/*.ml
-%{_libdir}/ocaml/dune*/*.mli
+%{_libdir}/ocaml/dune-*/*.cmt
+%{_libdir}/ocaml/dune-*/*.cmti
+%{_libdir}/ocaml/dune-*/*.ml
+%{_libdir}/ocaml/dune-*/*.mli
 %{_libdir}/ocaml/dune-private-libs/*/*.cmt
 %{_libdir}/ocaml/dune-private-libs/*/*.cmti
 %{_libdir}/ocaml/dune-private-libs/*/*.ml
 %{_libdir}/ocaml/dune-private-libs/*/*.mli
-%{_libdir}/ocaml/dune-site/*/*.cmt
-%{_libdir}/ocaml/dune-site/*/*.cmti
-%{_libdir}/ocaml/dune-site/*/*.ml
-%{_libdir}/ocaml/dune-site/*/*.mli
+%{_libdir}/ocaml/dune-site/plugins/*.cmt
+%{_libdir}/ocaml/dune-site/plugins/*.cmti
+%{_libdir}/ocaml/dune-site/plugins/*.ml
+%{_libdir}/ocaml/dune-site/plugins/*.mli
 %if %{with ocaml_opt}
-%{_libdir}/ocaml/dune*/*.a
-%{_libdir}/ocaml/dune*/*.cmx
-%{_libdir}/ocaml/dune*/*.cmxa
+%{_libdir}/ocaml/dune-*/*.a
+%{_libdir}/ocaml/dune-*/*.cmx
+%{_libdir}/ocaml/dune-*/*.cmxa
 %{_libdir}/ocaml/dune-private-libs/*/*.a
 %{_libdir}/ocaml/dune-private-libs/*/*.cmx
 %{_libdir}/ocaml/dune-private-libs/*/*.cmxa
-%{_libdir}/ocaml/dune-site/*/*.a
-%{_libdir}/ocaml/dune-site/*/*.cmx
-%{_libdir}/ocaml/dune-site/*/*.cmxa
+%{_libdir}/ocaml/dune-site/plugins/*.a
+%{_libdir}/ocaml/dune-site/plugins/*.cmx
+%{_libdir}/ocaml/dune-site/plugins/*.cmxa
 %else
 %{_libdir}/ocaml/dune-private-libs/filesystem_stubs/libdune_filesystem_stubs_stubs.a
 %{_libdir}/ocaml/dune-private-libs/stdune/libstdune_stubs.a
