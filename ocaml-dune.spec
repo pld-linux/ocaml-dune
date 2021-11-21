@@ -12,7 +12,7 @@ Summary:	A composable build system for OCaml
 Summary(pl.UTF-8):	Składalny system budowania dla OCamla
 Name:		ocaml-%{module}
 Version:	2.9.1
-Release:	1
+Release:	2
 License:	MIT
 Group:		Libraries
 #Source0Download: https://github.com/ocaml/dune/releases
