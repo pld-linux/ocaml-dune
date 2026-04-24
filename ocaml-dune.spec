@@ -12,7 +12,7 @@ Summary:	A composable build system for OCaml
 Summary(pl.UTF-8):	Składalny system budowania dla OCamla
 Name:		ocaml-%{module}
 Version:	3.11.1
-Release:	1
+Release:	2
 License:	MIT
 Group:		Libraries
 #Source0Download: https://github.com/ocaml/dune/releases
@@ -115,6 +115,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/ocaml/dune-site/linker
 %dir %{_libdir}/ocaml/dune-site/plugins
 %dir %{_libdir}/ocaml/dune-site/private
+%dir %{_libdir}/ocaml/dune-site/toplevel
 %dir %{_libdir}/ocaml/dune-rpc
 %dir %{_libdir}/ocaml/dune-rpc/private
 %dir %{_libdir}/ocaml/stdune
