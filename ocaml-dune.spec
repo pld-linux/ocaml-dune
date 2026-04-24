@@ -24,6 +24,7 @@ URL:		https://github.com/ocaml/dune
 BuildRequires:	ocaml >= 1:4.08
 BuildRequires:	ocaml-csexp >= 1.3.0
 %requires_eq	ocaml-runtime
+BuildRequires:	python3-sphinx_copybutton
 BuildRequires:	python3-sphinx_rtd_theme
 BuildRequires:	sphinx-pdg >= 2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -157,6 +158,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/ocaml/dune-*/*.cmti
 %{_libdir}/ocaml/dune-*/*.ml
 %{_libdir}/ocaml/dune-*/*.mli
+%{_libdir}/ocaml/dune-*/*/*.cmo
 %{_libdir}/ocaml/dune-*/*/*.cmt
 %{_libdir}/ocaml/dune-*/*/*.cmti
 %{_libdir}/ocaml/dune-*/*/*.ml
@@ -176,8 +178,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/ocaml/dune-*/*/*.a
 %{_libdir}/ocaml/dune-*/*/*.cmx
 %{_libdir}/ocaml/dune-*/*/*.cmxa
-%{_libdir}/ocaml/dune-site/*/*.cmo
-%{_libdir}/ocaml/dune-site/*/*.o
+%{_libdir}/ocaml/dune-*/*/*.o
 %{_libdir}/ocaml/stdune/*.a
 %{_libdir}/ocaml/stdune/*.cmx
 %{_libdir}/ocaml/stdune/*.cmxa
@@ -185,6 +186,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/ocaml/stdune/*/*.cmx
 %{_libdir}/ocaml/stdune/*/*.cmxa
 %else
-%{_libdir}/ocaml/dune-private-libs/filesystem_stubs/libdune_filesystem_stubs_stubs.a
-%{_libdir}/ocaml/dune-private-libs/stdune/libstdune_stubs.a
+%{_libdir}/ocaml/stdune/libstdune_stubs.a
+%{_libdir}/ocaml/stdune/filesystem_stubs/libdune_filesystem_stubs_stubs.a
 %endif
