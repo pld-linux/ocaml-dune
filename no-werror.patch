@@ -1,0 +1,11 @@
+--- dune-3.11.1/Makefile~	2023-10-09 13:08:29.000000000 +0200
++++ dune-3.11.1/Makefile	2026-04-23 11:00:12.223341231 +0200
+@@ -141,7 +141,7 @@
+ 
+ .PHONY: doc
+ doc:
+-	sphinx-build -W doc doc/_build
++	sphinx-build doc doc/_build
+ 
+ # livedoc-deps: you may need to [pip3 install sphinx-autobuild] and [pip3 install -r doc/requirements.txt]
+ livedoc:

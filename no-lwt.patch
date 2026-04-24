@@ -1,0 +1,20 @@
+--- dune-3.11.1/dune-project~	2023-10-09 13:08:29.000000000 +0200
++++ dune-3.11.1/dune-project	2026-04-23 10:54:16.593341128 +0200
+@@ -150,17 +150,6 @@
+  (description "Library to connect and control a running dune instance"))
+ 
+ (package
+- (name dune-rpc-lwt)
+- (synopsis "Communicate with dune using rpc and Lwt")
+- (depends
+-  (dune-rpc (= :version))
+-  (result (>= 1.5))
+-  (csexp (>= 1.5.0))
+-  (lwt (>= 5.3.0))
+-  base-unix)
+- (description "Specialization of dune-rpc to Lwt"))
+-
+-(package
+  (name dyn)
+  (synopsis "Dynamic type")
+  (depends
