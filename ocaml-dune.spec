@@ -101,7 +101,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc LICENSE.md CHANGES.md README.md doc/_build/*
 %attr(755,root,root) %{_bindir}/dune
-%dir %{_libdir}/ocaml/chrome-trace
 %dir %{_libdir}/ocaml/dune
 %dir %{_libdir}/ocaml/dune-action-plugin
 %dir %{_libdir}/ocaml/dune-build-info
@@ -121,11 +120,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/ocaml/stdune
 %dir %{_libdir}/ocaml/stdune/csexp
 %dir %{_libdir}/ocaml/stdune/filesystem_stubs
-%{_libdir}/ocaml/chrome-trace/META
-%{_libdir}/ocaml/chrome-trace/*.cma
-%{_libdir}/ocaml/chrome-trace/*.cmi
-%{_libdir}/ocaml/chrome-trace/dune-package
-%{_libdir}/ocaml/chrome-trace/opam
 %{_libdir}/ocaml/dune*/META
 %{_libdir}/ocaml/dune-*/*.cma
 %{_libdir}/ocaml/dune-*/*.cmi
@@ -149,6 +143,50 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/ocaml/stublibs/dllstdune_stubs.so
 %{_mandir}/man1/dune*.1*
 %{_mandir}/man5/dune-config.5*
+
+# Extra libs build with dune, keep the separate
+%dir %{_libdir}/ocaml/chrome-trace
+%{_libdir}/ocaml/chrome-trace/META
+%{_libdir}/ocaml/chrome-trace/*.cma
+%{_libdir}/ocaml/chrome-trace/*.cmi
+%{_libdir}/ocaml/chrome-trace/dune-package
+%{_libdir}/ocaml/chrome-trace/opam
+%dir %{_libdir}/ocaml/dyn
+%{_libdir}/ocaml/dyn/META
+%{_libdir}/ocaml/dyn/dune-package
+%{_libdir}/ocaml/dyn/*.cma
+%{_libdir}/ocaml/dyn/*.cmi
+%{_libdir}/ocaml/dyn/opam
+%dir %{_libdir}/ocaml/dyn/pp
+%{_libdir}/ocaml/dyn/pp/*.cma
+%{_libdir}/ocaml/dyn/pp/*.cmi
+%dir %{_libdir}/ocaml/ocamlc-loc
+%{_libdir}/ocaml/ocamlc-loc/META
+%{_libdir}/ocaml/ocamlc-loc/dune-package
+%{_libdir}/ocaml/ocamlc-loc/*.cma
+%{_libdir}/ocaml/ocamlc-loc/*.cmi
+%{_libdir}/ocaml/ocamlc-loc/opam
+%dir %{_libdir}/ocaml/ordering
+%{_libdir}/ocaml/ordering/META
+%{_libdir}/ocaml/ordering/dune-package
+%{_libdir}/ocaml/ordering/opam
+%{_libdir}/ocaml/ordering/*.cma
+%{_libdir}/ocaml/ordering/*.cmi
+%dir %{_libdir}/ocaml/xdg
+%{_libdir}/ocaml/xdg/META
+%{_libdir}/ocaml/xdg/dune-package
+%{_libdir}/ocaml/xdg/opam
+%{_libdir}/ocaml/xdg/*.cma
+%{_libdir}/ocaml/xdg/*.cmi
+%if %{with ocaml_opt}
+%{_libdir}/ocaml/chrome-trace/*.cmxs
+%{_libdir}/ocaml/dyn/*.cmxs
+%{_libdir}/ocaml/dyn/pp/*.cmxs
+%{_libdir}/ocaml/ocamlc-loc/*.cmxs
+%{_libdir}/ocaml/ordering/*.cmxs
+%{_libdir}/ocaml/xdg/*.cmxs
+%endif
+%{_libdir}/ocaml/stublibs/dllxdg_stubs.so
 
 %files devel
 %defattr(644,root,root,755)
@@ -188,4 +226,50 @@ rm -rf $RPM_BUILD_ROOT
 %else
 %{_libdir}/ocaml/stdune/libstdune_stubs.a
 %{_libdir}/ocaml/stdune/filesystem_stubs/libdune_filesystem_stubs_stubs.a
+%endif
+
+# Extra libs build with dune, keep the separate
+%{_libdir}/ocaml/chrome-trace/*.cmt
+%{_libdir}/ocaml/chrome-trace/*.cmti
+%{_libdir}/ocaml/chrome-trace/*.ml
+%{_libdir}/ocaml/chrome-trace/*.mli
+%{_libdir}/ocaml/dyn/*.cmt
+%{_libdir}/ocaml/dyn/*.cmti
+%{_libdir}/ocaml/dyn/*.ml
+%{_libdir}/ocaml/dyn/*.mli
+%{_libdir}/ocaml/dyn/pp/*.cmt
+%{_libdir}/ocaml/dyn/pp/*.cmti
+%{_libdir}/ocaml/dyn/pp/*.ml
+%{_libdir}/ocaml/dyn/pp/*.mli
+%{_libdir}/ocaml/ocamlc-loc/*.cmt
+%{_libdir}/ocaml/ocamlc-loc/*.cmti
+%{_libdir}/ocaml/ocamlc-loc/*.ml
+%{_libdir}/ocaml/ocamlc-loc/*.mli
+%{_libdir}/ocaml/ordering/*.cmt
+%{_libdir}/ocaml/ordering/*.cmti
+%{_libdir}/ocaml/ordering/*.ml
+%{_libdir}/ocaml/ordering/*.mli
+%{_libdir}/ocaml/xdg/*.cmt
+%{_libdir}/ocaml/xdg/*.cmti
+%{_libdir}/ocaml/xdg/*.ml
+%{_libdir}/ocaml/xdg/*.mli
+%if %{with ocaml_opt}
+%{_libdir}/ocaml/chrome-trace/*.a
+%{_libdir}/ocaml/chrome-trace/*.cmx
+%{_libdir}/ocaml/chrome-trace/*.cmxa
+%{_libdir}/ocaml/dyn/*.a
+%{_libdir}/ocaml/dyn/*.cmx
+%{_libdir}/ocaml/dyn/*.cmxa
+%{_libdir}/ocaml/dyn/pp/*.a
+%{_libdir}/ocaml/dyn/pp/*.cmx
+%{_libdir}/ocaml/dyn/pp/*.cmxa
+%{_libdir}/ocaml/ocamlc-loc/*.a
+%{_libdir}/ocaml/ocamlc-loc/*.cmx
+%{_libdir}/ocaml/ocamlc-loc/*.cmxa
+%{_libdir}/ocaml/ordering/*.a
+%{_libdir}/ocaml/ordering/*.cmx
+%{_libdir}/ocaml/ordering/*.cmxa
+%{_libdir}/ocaml/xdg/*.a
+%{_libdir}/ocaml/xdg/*.cmx
+%{_libdir}/ocaml/xdg/*.cmxa
 %endif
